@@ -52,8 +52,8 @@ public class GameBoard : MonoBehaviour
                 board[i, collum] = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
                 Debug.Log("chip placed at " + (i) + " : " + collum);
 
-                Vector3 offset = new Vector3((3 * collum), (Width*3)-(3 * i), 0);
-                Instantiate(((m_doritosTurn) ? m_doritoPrefab : m_iluminatiPrefab), transform.position + offset, Quaternion.identity, m_board.transform);
+                Vector3 offset = new Vector3((Height*3)-(3 * collum), (3 * i), 0);
+                Instantiate(((m_doritosTurn) ? m_doritoPrefab : m_iluminatiPrefab), m_bottomLeftSlot.position + offset, Quaternion.identity, m_board.transform);
                 if (CheckForWin(i,collum))
                 {
                     Debug.Log("You Won");
