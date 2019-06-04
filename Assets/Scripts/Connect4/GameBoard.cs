@@ -59,10 +59,10 @@ public class GameBoard : MonoBehaviour
     public void DebugBoard()
     {
         Debug.Log("Debug Board-----------------------------------------");
-        for (int i = 0; i < Height; i++)
+        for (int i = Height-1; i >= 0; i--)
         {
             string row = "";
-            for (int j = 0; j < Width; j++)
+            for (int j = Width-1; j >= 0; j--)
             {
                 row += board[i, j].ToString() + " : ";
             }
@@ -90,6 +90,7 @@ public class GameBoard : MonoBehaviour
                 n = (((row + 3) < Height) ? (row + 3) : (Height - 1));
                 l = (((row - 3) < 0) ? (row - 3) : 0);
                 s = -1;
+                c--;
             }
             for (int r = n; r != l; r += s)
             {
