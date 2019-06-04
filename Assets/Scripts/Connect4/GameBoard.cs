@@ -45,7 +45,7 @@ public class GameBoard : MonoBehaviour
             if(board[i,collum] == ePlaceHolder.NONE)
             {
                 board[i, collum] = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
-                Debug.Log("chip placed at " + (i - 1) + " : " + collum);
+                Debug.Log("chip placed at " + (i) + " : " + collum);
                 if (CheckForWin(i,collum))
                 {
                     //won
