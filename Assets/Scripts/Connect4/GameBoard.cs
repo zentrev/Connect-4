@@ -55,7 +55,7 @@ public class GameBoard : MonoBehaviour
                 Instantiate(((m_doritosTurn) ? m_doritoPrefab : m_iluminatiPrefab), transform.position + offset, Quaternion.identity);
                 if (CheckForWin(i,collum))
                 {
-                    //won
+                    Debug.Log("You Won");
                 }
                 m_doritosTurn = !m_doritosTurn;
                 return;
