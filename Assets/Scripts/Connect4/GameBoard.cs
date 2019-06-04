@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
+    [SerializeField] Transform m_bottomLeftSlot = null;
+    [SerializeField] GameObject m_doritoPrefab = null;
+    [SerializeField] GameObject m_iluminatiPrefab = null;
+
 
     public static int Width = 7;
     public static int Height = 6;
@@ -46,6 +50,9 @@ public class GameBoard : MonoBehaviour
             {
                 board[i, collum] = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
                 Debug.Log("chip placed at " + (i) + " : " + collum);
+
+                Vector3 offset = new Vector3(3 * i, 3 * collum, 0);
+                Instantiate(((m_doritosTurn) ? m_doritoPrefab : m_iluminatiPrefab), transform.position + offset, Quaternion.identity);
                 if (CheckForWin(i,collum))
                 {
                     //won
