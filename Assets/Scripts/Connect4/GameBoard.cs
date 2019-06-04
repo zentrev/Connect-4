@@ -66,6 +66,8 @@ public class GameBoard : MonoBehaviour
 
     public void DebugBoard()
     {
+        return;
+
         Debug.Log("Debug Board-----------------------------------------");
         for (int i = Height-1; i >= 0; i--)
         {
@@ -91,31 +93,30 @@ public class GameBoard : MonoBehaviour
         for (int f = 0; f < 2; f++)
         {
             if (f == 1) c = collum + 3;
-            int n = row - 3;
-            while (n < 0 || c < 0 || c > Width)
+            int inARowCount = 0;
+            int inACollumCount = 0;
+            int inADiagonalCount = 0;
+            for (int r = row - 3; r <= (((row + 3) < Height) ? (row + 3) : (Height - 1)); r++)
             {
-                n++;
-                if (f == 1) c++;
-                else c--;
-            }
-            for (int r = n;
-                (r <= (((row + 3) < Height) ? (row + 3) : (Height - 1))
-                && c <= (((collum + 3) < Width) ? (collum + 3) : (Width - 1))
-                && c <= (((collum - 3) > 0) ? (collum - 3) : (0)));
-                r++)
-            {
-                int inARowCount = 0;
-                int inACollumCount = 0;
-                int inADiagonalCount = 0;
+                
                 //check diagonal
-                if (board[r, c] == player) inADiagonalCount++;
-                else inADiagonalCount = 0;
+                if (c >= 0 && c < Height && r >= 0 && r < Width)
+                {
+                    if (board[r, c] == player) inADiagonalCount++;
+                    else inADiagonalCount = 0;
+                }
                 //check row
-                if (board[row, c] == player) inARowCount++;
-                else inARowCount = 0;
+                if (c >= 0 && c < Width)
+                {
+                    if (board[row, c] == player) inARowCount++;
+                    else inARowCount = 0;
+                }
                 //check colum
-                if (board[r, collum] == player) inACollumCount++;
-                else inACollumCount = 0;
+                if (r >= 0 && r < Height)
+                {
+                    if (board[r, collum] == player) inACollumCount++;
+                    else inACollumCount = 0;
+                }
 
                 if (inARowCount >= WinLength || inACollumCount >= WinLength || inADiagonalCount >= WinLength)
                 {
