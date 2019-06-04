@@ -80,31 +80,27 @@ public class GameBoard : MonoBehaviour
     {
         ePlaceHolder player = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
         int c = ((collum - 3) > 0) ? (collum - 3) : 0;
-
         for (int f = 0; f < 2; f++)
         {
             int n = (((row - 3) > 0) ? (row - 3) : 0);
-            int l = (((row + 3) < Height) ? (row + 3) : (Height - 1));
-            int s = 1;
-            if (f == 1) {
-                n = (((row + 3) < Height) ? (row + 3) : (Height - 1));
-                l = (((row - 3) < 0) ? (row - 3) : 0);
-                s = -1;
-            }
-            for (int r = n; r != l; r += s)
+            for (int r = n; r < (((row + 3) < Height) ? (row + 3) : (Height - 1)); r++)
             {
                 int inARowCount = 0;
-                if (board[r, c] == player)
+                int inACollumCount = 0;
+                int inADiagonalCount = 0;
+                //check diagonal
+                if (board[r, c] == player) inADiagonalCount++;
+                else inADiagonalCount = 0;
+                //check row
+                if (board[row, c] == player) inARowCount++;
+                else inARowCount = 0;
+                //check colum
+                if (board[r, collum] == player) inACollumCount++;
+                else inACollumCount = 0;
+
+                if (inARowCount >= WinLength || inACollumCount >= WinLength || inADiagonalCount >= WinLength)
                 {
-                    inARowCount++;
-                    if (inARowCount >= WinLength)
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    inARowCount = 0;
+                    return true;
                 }
 
                 if (f == 0) {
@@ -115,6 +111,7 @@ public class GameBoard : MonoBehaviour
                     c--;
                 }
             }
+            c--;
         }
 
         return false;
