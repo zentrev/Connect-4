@@ -37,7 +37,7 @@ public class GameBoard : MonoBehaviour
 
     public void PlaceChip(int collum)
     {
-        if (!CheckCollum(collum)) return;
+        if (!CheckCollum(collum)) throw new System.Exception("Collum already full");
 
         for(int i = 0; i < Height; i++)
         {
@@ -45,6 +45,7 @@ public class GameBoard : MonoBehaviour
             {
                 board[i - 1, collum] = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
                 CheckForWin(i,collum);
+                return;
             }
         }
     }
@@ -57,6 +58,8 @@ public class GameBoard : MonoBehaviour
 
     bool CheckForWin(int row, int collum)
     {
+
+
         return false;
     }
 }
