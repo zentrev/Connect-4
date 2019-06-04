@@ -3324,6 +3324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b83024586cd1aa4da36796508190392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_bottomLeftSlot: {fileID: 1141144213}
+  m_doritoPrefab: {fileID: 3355118871387873561, guid: 0b865642cbcaff141818af20f147c8b5,
+    type: 3}
+  m_iluminatiPrefab: {fileID: 3355118871387873561, guid: e23afc5b3700d394da5d0e021da8e774,
+    type: 3}
+  m_board: {fileID: 1304214363}
 --- !u!1 &1517799201
 GameObject:
   m_ObjectHideFlags: 0
@@ -4479,7 +4485,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2023994680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766a28e15decacc4dade30a45d8d257d, type: 3}
+  m_Script: {fileID: 11500000, guid: 35971701a5ab814488228195912c6ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_dropNodes:

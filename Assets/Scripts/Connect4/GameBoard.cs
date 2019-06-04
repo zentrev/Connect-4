@@ -87,11 +87,22 @@ public class GameBoard : MonoBehaviour
     bool CheckForWin(int row, int collum)
     {
         ePlaceHolder player = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
-        int c = ((collum - 3) > 0) ? (collum - 3) : 0;
+        int c = (collum - 3);
         for (int f = 0; f < 2; f++)
         {
-            int n = (((row - 3) > 0) ? (row - 3) : 0);
-            for (int r = n; r < (((row + 3) < Height) ? (row + 3) : (Height - 1)); r++)
+            if (f == 1) c = collum + 3;
+            int n = row - 3;
+            while (n < 0 || c < 0 || c > Width)
+            {
+                n++;
+                if (f == 1) c++;
+                else c--;
+            }
+            for (int r = n;
+                (r <= (((row + 3) < Height) ? (row + 3) : (Height - 1))
+                && c <= (((collum + 3) < Width) ? (collum + 3) : (Width - 1))
+                && c <= (((collum - 3) > 0) ? (collum - 3) : (0)));
+                r++)
             {
                 int inARowCount = 0;
                 int inACollumCount = 0;
@@ -111,15 +122,9 @@ public class GameBoard : MonoBehaviour
                     return true;
                 }
 
-                if (f == 0) {
-                    c++;
-                }
-                else
-                {
-                    c--;
-                }
+                if (f == 0) c++;
+                else c--;
             }
-            c--;
         }
 
         return false;
