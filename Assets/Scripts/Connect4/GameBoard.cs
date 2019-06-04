@@ -87,7 +87,7 @@ public class GameBoard : MonoBehaviour
             int l = (((row + 3) < Height) ? (row + 3) : (Height - 1));
             int s = 1;
             if (f == 1) {
-                n = (((row + 3) < Height) ? (row + 3) : Height);
+                n = (((row + 3) < Height) ? (row + 3) : (Height - 1));
                 l = (((row - 3) < 0) ? (row - 3) : 0);
                 s = -1;
             }
