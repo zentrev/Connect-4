@@ -37,22 +37,37 @@ public class GameBoard : MonoBehaviour
 
     public void PlaceChip(int collum)
     {
-        if (!CheckCollum(collum)) throw new System.Exception("Collum already full");
+        if (CheckCollum(collum)) throw new System.Exception("Collum already full");
 
         for(int i = 0; i < Height; i++)
         {
-            if(board[i,collum] != ePlaceHolder.NONE)
+            if(board[i,collum] == ePlaceHolder.NONE)
             {
-                board[i - 1, collum] = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
+                board[i, collum] = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
+                Debug.Log("chip placed at " + (i - 1) + " : " + collum);
                 CheckForWin(i,collum);
                 return;
             }
         }
     }
 
+    public void DebugBoard()
+    {
+        Debug.Log("Debug Board-----------------------------------------");
+        for (int i = 0; i < Height; i++)
+        {
+            string row = "";
+            for (int j = 0; j < Width; j++)
+            {
+                row += board[i, j].ToString() + " : ";
+            }
+            Debug.Log(row);
+        }
+    }
+
     public bool CheckCollum(int collum)
     {
-        if (board[Height, collum] != ePlaceHolder.NONE) return true;
+        if (board[Height-1, collum] != ePlaceHolder.NONE) return true;
         return false;
     }
 
