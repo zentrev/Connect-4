@@ -32,7 +32,7 @@ public class GameManager : Singleton<GameManager>
                 Cursor.visible = true;
                 break;
             case eSet.GAME:
-                Cursor.visible = false;
+                Cursor.visible = true;
                 break;
             default:
                 break;
