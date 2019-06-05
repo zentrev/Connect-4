@@ -77,6 +77,7 @@ public class GameBoard : MonoBehaviour
                 //Display Turn
                 for (int f = 0; f < Width; f++)
                 {
+
                     if (board[Height - 1, f] == ePlaceHolder.NONE)
                     {
                         if (m_doritosTurn)
