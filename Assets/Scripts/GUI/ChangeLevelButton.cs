@@ -17,7 +17,7 @@ public class ChangeLevelButton : MonoBehaviour
         m_button.onClick.AddListener(TaskOnClick);
     }
 
-    void TaskOnClick()
+   public void TaskOnClick()
     {
         GameManager.Instance.LoadLevel(m_nextLevel);
     }
