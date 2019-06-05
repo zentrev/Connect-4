@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [System.Serializable]
-    struct DropNode
+    public struct DropNode
     {
         [SerializeField] public GameObject node;
         [SerializeField] public int collum;
     }
 
-    [SerializeField] DropNode[] m_dropNodes = new DropNode[7];
+    [SerializeField] public DropNode[] m_dropNodes = new DropNode[7];
     [SerializeField] GameBoard m_board = null;
 
     bool m_playerTurn = true;
