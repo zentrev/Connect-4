@@ -8,7 +8,8 @@ public class GameBoard : MonoBehaviour
     [SerializeField] GameObject m_doritoPrefab = null;
     [SerializeField] GameObject m_iluminatiPrefab = null;
     [SerializeField] GameObject m_board = null;
-    [SerializeField] PlayerInput m_playerInput = null;
+    [SerializeField] GameObject[] m_doritioDisplay = null;
+    [SerializeField] GameObject[] m_iluminatieDisplay = null;
 
 
     public static int Width = 7;
@@ -51,7 +52,8 @@ public class GameBoard : MonoBehaviour
             if(board[i,collum] == ePlaceHolder.NONE)
             {
                 //Place Chip
-                board[i, collum] = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
+                ePlaceHolder player = (m_doritosTurn) ? ePlaceHolder.DORITO : ePlaceHolder.ILUMINATI;
+                board[i, collum] = player;
                 Debug.Log("chip placed at " + (i) + " : " + collum);
 
                 Vector3 offset = new Vector3((Height*3)-(3 * collum), (3 * i), 0);
@@ -67,7 +69,24 @@ public class GameBoard : MonoBehaviour
                 //Display Turn
                 for (int f = 0; f < Width; f++)
                 {
-                    m_playerInput.m_dropNodes.ga
+                    if (board[Height - 1, f] == ePlaceHolder.NONE)
+                    {
+                        if (m_doritosTurn)
+                        {
+                            m_doritioDisplay[f].SetActive(true);
+                            m_iluminatieDisplay[f].SetActive(false);
+                        }
+                        else
+                        {
+                            m_doritioDisplay[f].SetActive(false);
+                            m_iluminatieDisplay[f].SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        m_doritioDisplay[f].SetActive(false);
+                        m_iluminatieDisplay[f].SetActive(false);
+                    }
                 }
 
                 return;
