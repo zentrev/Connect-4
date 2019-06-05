@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public DropNode[] m_dropNodes = new DropNode[7];
     [SerializeField] GameBoard m_board = null;
 
-    bool m_playerTurn = true;
+    public bool m_playerTurn = true;
 
     void Update()
     {

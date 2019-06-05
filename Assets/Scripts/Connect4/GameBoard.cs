@@ -17,6 +17,7 @@ public class GameBoard : MonoBehaviour
 
     [SerializeField] AudioClip m_chipSound = null;
     [SerializeField] AudioClip m_eyeSound = null;
+    [SerializeField] PlayerInput m_playerInput = null;
 
 
     public static int Width = 7;
@@ -63,7 +64,7 @@ public class GameBoard : MonoBehaviour
                 board[i, collum] = player;
                 Debug.Log("chip placed at " + (i) + " : " + collum);
 
-                Vector3 offset = new Vector3(i * 3, 0,0);
+                Vector3 offset = new Vector3((Width - collum-1) * 3, 0 ,0);
                 Instantiate(((m_doritosTurn) ? m_doritoPrefabDrop : m_iluminatiPrefabDrop), m_bottomLeftSlot.position + offset, Quaternion.identity, m_board.transform);
                 GetComponent<AudioSource>().clip = (m_doritosTurn) ? m_chipSound : m_eyeSound;
                 GetComponent<AudioSource>().Play();
@@ -106,6 +107,8 @@ public class GameBoard : MonoBehaviour
 
     IEnumerator Win()
     {
+        m_playerInput.m_playerTurn = false;
+        yield return new WaitForSeconds(3);
         m_winCanvas.GetComponent<Canvas>().enabled = true;
         yield return new WaitForSeconds(5);
         m_winCanvas.GetComponent<Canvas>().enabled = false;
