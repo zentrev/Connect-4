@@ -67,7 +67,7 @@ public class GameBoard : MonoBehaviour
                 //Display Turn
                 for (int f = 0; f < Width; f++)
                 {
-                    m_playerInput.m_dropNodes.ga
+                    //m_playerInput.m_dropNodes.ga
                 }
 
                 return;
