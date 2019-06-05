@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class GameBoard : MonoBehaviour
 {
     [SerializeField] Transform m_bottomLeftSlot = null;
     [SerializeField] GameObject m_doritoPrefab = null;
     [SerializeField] GameObject m_iluminatiPrefab = null;
+    [SerializeField] GameObject m_doritoPrefabDrop = null;
+    [SerializeField] GameObject m_iluminatiPrefabDrop = null;
     [SerializeField] GameObject m_board = null;
     [SerializeField] GameObject[] m_doritioDisplay = null;
     [SerializeField] GameObject[] m_iluminatieDisplay = null;
+    [SerializeField] GameObject m_winCanvas = null;
+
+    [SerializeField] AudioClip m_chipSound = null;
+    [SerializeField] AudioClip m_eyeSound = null;
 
 
     public static int Width = 7;
@@ -56,13 +63,14 @@ public class GameBoard : MonoBehaviour
                 board[i, collum] = player;
                 Debug.Log("chip placed at " + (i) + " : " + collum);
 
-                Vector3 offset = new Vector3((Height*3)-(3 * collum), (3 * i), 0);
-                Instantiate(((m_doritosTurn) ? m_doritoPrefab : m_iluminatiPrefab), m_bottomLeftSlot.position + offset, Quaternion.identity, m_board.transform);
-
+                Vector3 offset = new Vector3(i * 3, 0,0);
+                Instantiate(((m_doritosTurn) ? m_doritoPrefabDrop : m_iluminatiPrefabDrop), m_bottomLeftSlot.position + offset, Quaternion.identity, m_board.transform);
+                GetComponent<AudioSource>().clip = (m_doritosTurn) ? m_chipSound : m_eyeSound;
+                GetComponent<AudioSource>().Play();
                 //Check for win
                 if (CheckForWin(i,collum))
                 {
-                    Debug.Log("You Won");
+                    StartCoroutine("Win");
                 }
                 m_doritosTurn = !m_doritosTurn;
 
@@ -92,6 +100,15 @@ public class GameBoard : MonoBehaviour
                 return;
             }
         }
+    }
+
+
+    IEnumerator Win()
+    {
+        m_winCanvas.GetComponent<Canvas>().enabled = true;
+        yield return new WaitForSeconds(5);
+        m_winCanvas.GetComponent<Canvas>().enabled = false;
+        GameManager.Instance.LoadLevel("MainMenu");
     }
 
     public void DebugBoard()
