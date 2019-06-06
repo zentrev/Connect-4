@@ -4554,7 +4554,7 @@ MonoBehaviour:
     type: 3}
   m_doritoPrefabDrop: {fileID: 2619175062897178782, guid: 8e5961b2cb940a34fb9078d0ad79f079,
     type: 3}
-  m_iluminatiPrefabDrop: {fileID: 2619175062897178782, guid: 55bc5fc8ee672db4cbfc7d0361f948ed,
+  m_iluminatiPrefabDrop: {fileID: 2619175062897178782, guid: 4dc54d06422b7714ca90cbd9b04b95da,
     type: 3}
   m_board: {fileID: 1304214363}
   m_doritioDisplay:
